@@ -1,0 +1,28 @@
+{
+  "name": "browser-installations",
+  "version": "0.1.0",
+  "description": "Package for detection versions of installed browsers",
+  "main": "index.js",
+  "scripts": {
+    "assemble": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petrkoutnycz/browser-installations.git"
+  },
+  "keywords": [
+    "browser",
+    "browser-driver"
+  ],
+  "author": "Petr Koutny <me@petrkoutny.cz>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/petrkoutnycz/browser-installations/issues"
+  },
+  "homepage": "https://github.com/petrkoutnycz/browser-installations#readme",
+  "devDependencies": {
+    "@types/node": "^8.5.2",
+    "typescript": "~2.6.0"
+  }
+}

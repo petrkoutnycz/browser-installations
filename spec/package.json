@@ -1,0 +1,11 @@
+{
+  "name": "spec",
+  "version": "1.0.0",
+  "description": "Spec folder for the project",
+  "scripts": {},
+  "author": "Petr Koutny <me@petrkoutny.cz>",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-installations": "../"
+  }
+}
