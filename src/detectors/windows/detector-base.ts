@@ -3,7 +3,14 @@ import * as path from "path";
 import {IDetector, IBrowserMetadata, BrowserMetadata} from "../../api";
 import {resolveFileVersion} from "./resolve-fileversion";
 
+/**
+ * Environmental property with a path to x86 program files folder
+ */
 export const ENV_PROGRAM_FILES_x86 = "ProgramFiles(x86)"
+
+/**
+ * Environmental property with a path to x64 program files folder
+ */
 export const ENV_PROGRAM_FILES_x64 = "ProgramFiles"
 
 export abstract class WindowsDetectorBase implements IDetector {
