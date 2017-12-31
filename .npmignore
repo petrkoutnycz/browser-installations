@@ -1,0 +1,6 @@
+.vscode
+spec
+src
+.travis.yml
+test.js
+tsconfig.json
