@@ -1,3 +1,7 @@
 language: node_js
 node_js:
   - "lts/*"
+deploy:
+  provider: npm
+  email: "koutnypetr@seznam.cz"
+  api_key: "78b10403-e5ad-4f2a-ab5a-ee3743f4fc4d"
