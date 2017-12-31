@@ -1,6 +1,6 @@
 import {exists} from "fs";
 import * as path from "path";
-import {IDetector, IBrowserMetadata} from "../../api";
+import {IDetector, IBrowserMetadata, BrowserMetadata} from "../../api";
 import {resolveFileVersion} from "./resolve-fileversion";
 
 export const ENV_PROGRAM_FILES_x86 = "ProgramFiles(x86)"
@@ -8,21 +8,34 @@ export const ENV_PROGRAM_FILES_x64 = "ProgramFiles"
 
 export abstract class WindowsDetectorBase implements IDetector {
     /**
-     * Name of an executable file
-     * @example chrome.exe
+     * Gets a path to program files folder (x86)
      */
-    protected abstract get executable(): string;
+    protected get programFilesX86Path(): string {
+        return process.env[ENV_PROGRAM_FILES_x86];
+    }
+
+    /**
+     * Gets a path to program files folder (x64)
+     */
+    protected get programFilesX64Path(): string {
+        return process.env[ENV_PROGRAM_FILES_x64];
+    }
+
+    /**
+     * Gets an array of possible paths to an executable
+     */
+    protected abstract getExecutablePaths(): string[];
 
     public async detect(): Promise<IBrowserMetadata> {
-        const x86path = path.join(process.env[ENV_PROGRAM_FILES_x86], "Google", "Chrome", "Application", this.executable);
-        const x86fileVersion = await this.getFileVersionIfExists(x86path);
-        if (x86fileVersion)  {
-            return {
-                executable: this.executable,
-                version: x86fileVersion
-            };
-        }
+        const paths = this.getExecutablePaths();
 
+        for (let pth of paths) {
+            const fileVersion = await this.getFileVersionIfExists(pth);
+
+            if (fileVersion) {
+                return new BrowserMetadata(path.basename(pth), fileVersion);
+            }
+        }
         return undefined;
     };
 
