@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "assemble": "tsc",
-    "test": "npm run assemble && cd spec && npm i && node index.js"
+    "test": "npm run assemble && cd spec && npm i && npm test"
   },
   "repository": {
     "type": "git",

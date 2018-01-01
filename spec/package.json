@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "description": "Spec folder for the project",
   "scripts": {
-    "test": "jasmine src/version.spec.js"
+    "test": "tsc && jasmine JASMINE_CONFIG_PATH=jasmine.json"
   },
   "author": "Petr Koutny <me@petrkoutny.cz>",
   "license": "MIT",
   "devDependencies": {
-    "@types/jasmine": "~2.8.3",
+    "@types/jasmine": "~2.8.0",
     "browser-installations": "../",
-    "jasmine": "~2.8.0"
+    "jasmine": "~2.8.0",
+    "typescript": "~2.6.0"
   }
 }
