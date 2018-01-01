@@ -1,3 +1,6 @@
+
+import {isUndefined} from "lodash";
+
 export interface IVersion {
     major: number;
     minor?: number;
@@ -27,24 +30,23 @@ export class Version implements IVersion {
         }
 
         const re = /^(\d+)(?:\.(\d+))?(?:\.(\d+))?(?:\.(\d+))?$/.exec(version);
+        if (!re) {
+            return undefined;
+        }
+
         let major: number = undefined, minor: number = undefined, patch: number = undefined, build: number = undefined;
-        if (re.length === 5) {
+        if (!isUndefined(re[4])) {
             build = parseInt(re[4], 10);
         }
-        if (re.length >= 4) {
+        if (!isUndefined(re[3])) {
             patch = parseInt(re[3], 10);
         }
-        if (re.length >= 3) {
+        if (!isUndefined(re[2])) {
             minor = parseInt(re[2], 10);
         }
-        if (re.length >= 2) {
-            major = parseInt(re[1], 10);
-        }
 
-        if (typeof major !== "undefined") {
-            return new Version(major, minor, patch, build);
-        }
+        major = parseInt(re[1], 10);
 
-        return undefined;
+        return new Version(major, minor, patch, build);
     };
 };

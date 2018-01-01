@@ -7,10 +7,13 @@
          {
             "type": "node",
             "request": "launch",
-            "name": "Launch Spec",
-            "program": "${workspaceFolder}/spec/index.js",
+            "name": "spec / jasmine",
             "cwd": "${workspaceFolder}/spec/",
-            "preLaunchTask": "tsc: build - tsconfig.json"
+            "program": "${workspaceFolder}/spec/node_modules/jasmine/bin/jasmine.js",
+            "args": [
+                "JASMINE_CONFIG_PATH=jasmine.json"
+            ],
+            "console": "integratedTerminal"
         }
     ]
 }

@@ -1,8 +1,12 @@
 import {Version} from "browser-installations/dist/api";
 
 describe("version > ", () => {
-    it("should fail", () => {
-        expect(false).toBe(true);
+    it("parses 3-digit version", () => {
+        const v = Version.parse("1.100.200");
+        expect(v.major).toBe(1);
+        expect(v.minor).toBe(100);
+        expect(v.patch).toBe(200);
+        expect(v.build).toBeUndefined();
     });
 
     it("parses 4-digit version", () => {
