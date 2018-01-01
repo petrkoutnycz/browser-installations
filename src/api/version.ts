@@ -3,8 +3,8 @@ import {isUndefined} from "lodash";
 
 export interface IVersion {
     major: number;
-    minor?: number;
-    patch?: number;
+    minor: number;
+    patch: number;
     build?: number;
 };
 
@@ -29,23 +29,20 @@ export class Version implements IVersion {
             return undefined;
         }
 
-        const re = /^(\d+)(?:\.(\d+))?(?:\.(\d+))?(?:\.(\d+))?$/.exec(version);
+        const re = /(?:^|\s+)(\d+)\.(\d+)\.(\d+)(?:\.(\d+))?(?:$|\s+)/.exec(version);
         if (!re) {
             return undefined;
         }
 
-        let major: number = undefined, minor: number = undefined, patch: number = undefined, build: number = undefined;
+        let build: number = undefined;
+
         if (!isUndefined(re[4])) {
             build = parseInt(re[4], 10);
         }
-        if (!isUndefined(re[3])) {
-            patch = parseInt(re[3], 10);
-        }
-        if (!isUndefined(re[2])) {
-            minor = parseInt(re[2], 10);
-        }
 
-        major = parseInt(re[1], 10);
+        const major = parseInt(re[1], 10);
+        const minor = parseInt(re[2], 10);
+        const patch = parseInt(re[3], 10);
 
         return new Version(major, minor, patch, build);
     };
