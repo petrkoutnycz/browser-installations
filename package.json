@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "assemble": "tsc",
-    "test": "npm run assemble && cd spec && npm i && npm test"
+    "test": "npm run assemble && cd spec && rimraf node_modules/browser-installations/ && npm i && npm test"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   "homepage": "https://github.com/petrkoutnycz/browser-installations#readme",
   "devDependencies": {
     "@types/node": "^8.5.2",
+    "rimraf": "~2.5.0",
     "typescript": "~2.6.0"
   },
   "dependencies": {

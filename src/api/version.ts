@@ -8,6 +8,9 @@ export interface IVersion {
     build?: number;
 };
 
+export const REGEXP_EXACT = /^(\d+)\.(\d+)\.(\d+)(?:\.(\d+))?$/;
+export const REGEXP_CONTAINING = /(\d+)\.(\d+)\.(\d+)(?:\.(\d+))?/;
+
 /**
  * Structure representing a version number
  */
@@ -25,24 +28,32 @@ export class Version implements IVersion {
     }
 
     public static parse(version: string): Version {
+        return this.parseInternal(REGEXP_EXACT, version);
+    };
+
+    public static findFirst(version: string): Version {
+        return this.parseInternal(REGEXP_CONTAINING, version);
+    };
+
+    public static parseInternal(regexp: RegExp, version: string): Version {
         if (typeof version !== "string") {
             return undefined;
         }
 
-        const re = /(?:^|\s+)(\d+)\.(\d+)\.(\d+)(?:\.(\d+))?(?:$|\s+)/.exec(version);
-        if (!re) {
+        const match = regexp.exec(version);
+        if (!match) {
             return undefined;
         }
 
         let build: number = undefined;
 
-        if (!isUndefined(re[4])) {
-            build = parseInt(re[4], 10);
+        if (!isUndefined(match[4])) {
+            build = parseInt(match[4], 10);
         }
 
-        const major = parseInt(re[1], 10);
-        const minor = parseInt(re[2], 10);
-        const patch = parseInt(re[3], 10);
+        const major = parseInt(match[1], 10);
+        const minor = parseInt(match[2], 10);
+        const patch = parseInt(match[3], 10);
 
         return new Version(major, minor, patch, build);
     };
