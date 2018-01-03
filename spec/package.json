@@ -12,7 +12,6 @@
     "@types/jasmine": "~2.8.0",
     "browser-installations": "../",
     "jasmine": "~2.8.0",
-    "mockery": "~2.1.0",
-    "typescript": "~2.6.0"
+    "mockery": "~2.1.0"
   }
 }
