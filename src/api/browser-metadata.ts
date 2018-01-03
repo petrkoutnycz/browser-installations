@@ -11,9 +11,15 @@ export class BrowserMetadata implements IBrowserMetadata {
     public readonly version: string;
     public readonly versionObj: Version;
 
-    constructor(executable: string, version: string) {
+    constructor(executable: string, version: string | Version) {
         this.executable = executable;
-        this.version = version;
-        this.versionObj = Version.parse(version);
+
+        if (version instanceof Version) {
+            this.version = version.toString();
+            this.versionObj = version;
+        } else if (typeof version === "string") {
+            this.version = version;
+            this.versionObj = Version.parse(version);
+        }
     }
 };

@@ -45,4 +45,14 @@ describe("version > ", () => {
         const first = Version.findFirst("text 1234 fsd fsdf");
         expect(first).toBeUndefined();
     });
+
+    it("toString() works for 3-digit version", () => {
+        const v = new Version(100, 200, 300);
+        expect(v.toString()).toBe("100.200.300");
+    });
+
+    it("toString() works for 4-digit version", () => {
+        const v = new Version(100, 200, 300, 400);
+        expect(v.toString()).toBe("100.200.300.400");
+    });
 });

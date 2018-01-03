@@ -1,1 +1,1 @@
-export * from "./chrome-detector";
+export {WindowsChromeDetector} from "./chrome-detector";

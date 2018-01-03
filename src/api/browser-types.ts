@@ -1,1 +1,1 @@
-export type BrowserTypes = "chrome";
+export type BrowserTypes = "chrome" | "firefox";

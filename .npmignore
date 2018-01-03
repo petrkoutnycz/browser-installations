@@ -2,5 +2,6 @@
 spec
 src
 .travis.yml
+.travis.before-install.sh
 test.js
 tsconfig.json

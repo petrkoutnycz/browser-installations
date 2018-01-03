@@ -1,21 +1,34 @@
 import * as os from "os";
 import {BrowserTypes, IDetectorFactory, IDetector} from "./api";
-import {WindowsChromeDetector} from "./detectors";
+import {WindowsChromeDetector, LinuxChromeDetector, LinuxFirefoxDetector} from "./detectors";
 
 export class DetectorFactory implements IDetectorFactory {
-    public create(browser: BrowserTypes): IDetector {
-        if (os.platform() === "win32") {
+    public create = (browser: BrowserTypes): IDetector => {
+        const platform = os.platform();
+
+        if (platform === "win32") {
             return this.createWindowsDetector(browser);
+        } else if (platform === "linux") {
+            return this.createLinuxDetector(browser);
         }
 
-        return undefined;
+        throw new Error("Browser detection is supported only for win32 and linux environment.");
     };
 
     private createWindowsDetector(browser: BrowserTypes): IDetector {
-        if (browser === "chrome") {
-            return new WindowsChromeDetector();
+        switch (browser) {
+            case "chrome": return new WindowsChromeDetector();
+            default:
+                throw new Error("Windows browser detection is supported only for chrome.");
         }
+    };
 
-        return undefined;
+    private createLinuxDetector(browser: BrowserTypes): IDetector {
+        switch (browser) {
+            case "chrome": return new LinuxChromeDetector();
+            case "firefox": return new LinuxFirefoxDetector();
+            default:
+                throw new Error("Linux browser detection is supported only for chrome and firefox.");
+        }
     };
 };

@@ -27,6 +27,14 @@ export class Version implements IVersion {
         this.build = build;
     }
 
+    public toString(): string {
+        if (typeof this.build !== "undefined") {
+            return `${this.major}.${this.minor}.${this.patch}.${this.build}`;
+        }
+
+        return `${this.major}.${this.minor}.${this.patch}`;
+    };
+
     public static parse(version: string): Version {
         return this.parseInternal(REGEXP_EXACT, version);
     };

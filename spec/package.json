@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Spec folder for the project",
   "scripts": {
-    "test": "tsc && jasmine JASMINE_CONFIG_PATH=jasmine.json"
+    "assemble": "tsc",
+    "test": "npm run assemble && jasmine JASMINE_CONFIG_PATH=jasmine.json"
   },
   "author": "Petr Koutny <me@petrkoutny.cz>",
   "license": "MIT",
@@ -11,6 +12,7 @@
     "@types/jasmine": "~2.8.0",
     "browser-installations": "../",
     "jasmine": "~2.8.0",
+    "mockery": "~2.1.0",
     "typescript": "~2.6.0"
   }
 }

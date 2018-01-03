@@ -13,7 +13,8 @@
             "args": [
                 "JASMINE_CONFIG_PATH=jasmine.json"
             ],
-            "console": "integratedTerminal"
+            "console": "internalConsole",
+            "internalConsoleOptions": "openOnFirstSessionStart"
         }
     ]
 }
