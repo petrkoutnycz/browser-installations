@@ -2,7 +2,8 @@
   "name": "browser-installations",
   "version": "0.1.0",
   "description": "Package for detection versions of installed browsers",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
   "scripts": {
     "assemble": "tsc",
     "test": "npm run assemble && cd spec && rimraf node_modules/browser-installations/ && npm i && npm test"
