@@ -6,7 +6,7 @@ Function Set-ServiceStatus {
         if (($enable -eq $true) -and ($svc.StartType -eq [System.ServiceProcess.ServiceStartMode]::Automatic)) {
             Write-Host ("Starting service $_")
             Set-Service -Name $_ -Status Running
-        } elseif ($enable -eq $false) {
+        } elseif (($enable -eq $false) -and ($svc.Status -eq [System.ServiceProcess.ServiceControllerStatus]::Running)) {
             Write-Host ("Stopping service $_")
             Set-Service -Name $_ -Status Stopped
         }
@@ -55,6 +55,10 @@ Function Disable-Executable() {
 
 Function Enable-Executable() {
     $path = Get-DisabledExecutable
+    if ($path -eq $null) {
+        return $null
+    }
+
     Write-Host ("Reverting Chrome update executable name")
     $enabledPath = $path -replace "._exe",".exe"
     Rename-Item -Path $path -NewName $enabledPath

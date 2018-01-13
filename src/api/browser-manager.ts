@@ -1,6 +1,6 @@
 export interface IBrowserManager {
     /**
-     * Disables updates of the installed browser
+     * Enables or disables updates of the installed browser
      */
-    disableUpdates: () => Promise<void>;
+    setUpdates: (enable: boolean) => Promise<void>;
 };

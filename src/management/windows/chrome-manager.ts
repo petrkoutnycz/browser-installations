@@ -1,11 +1,14 @@
 import {IBrowserManager} from "../../api";
-import {stopService} from "./service-management";
-
-export const UPDATE_SERVICES = ["gupdate", "gupdatem"];
+import {assetPath, powershellFileCall} from "../../helpers";
 
 export class WindowsChromeManager implements IBrowserManager {
-    public disableUpdates = (): Promise<void> => {
-        // todo:
-        return undefined;
+    private get powershellFile(): string {
+        return assetPath("windows-chrome-updates.ps1");
+    };
+
+    public setUpdates = (enable: boolean): Promise<void> => {
+        return powershellFileCall(this.powershellFile, {
+            "enabled": !!enable
+        }).then(() => {});
     };
 };
