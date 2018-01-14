@@ -8,7 +8,11 @@ export class WindowsChromeManager implements IBrowserManager {
 
     public setUpdates = (enable: boolean): Promise<void> => {
         return powershellFileCall(this.powershellFile, {
-            "enabled": !!enable
-        }).then(() => {});
+                "enable": enable
+            })
+            .then(() => {})
+            .catch(err => {
+                throw new Error(`Error occured during setting updates\n${err}`);
+            });
     };
 };

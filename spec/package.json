@@ -13,5 +13,8 @@
     "browser-installations": "../",
     "jasmine": "~2.8.0",
     "mockery": "~2.1.0"
+  },
+  "engines": {
+    "node": ">=8.0.0"
   }
 }

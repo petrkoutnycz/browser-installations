@@ -5,7 +5,11 @@ Function Set-ServiceStatus {
         $svc = Get-Service $_
         if (($enable -eq $true) -and ($svc.StartType -eq [System.ServiceProcess.ServiceStartMode]::Automatic)) {
             Write-Host ("Starting service $_")
-            Set-Service -Name $_ -Status Running
+            Try {
+                Set-Service -Name $_ -Status Running -ErrorAction Stop
+            } Catch {
+                Write-Host ("Error occured during stoping a service '{0}'" -f $svc.DisplayName)
+            }
         } elseif (($enable -eq $false) -and ($svc.Status -eq [System.ServiceProcess.ServiceControllerStatus]::Running)) {
             Write-Host ("Stopping service $_")
             Set-Service -Name $_ -Status Stopped
@@ -49,7 +53,7 @@ Function Disable-Executable() {
 
     $disabledPath = $path -replace ".exe","._exe"
     Write-Host ("Setting Chrome update executable invalid name")
-    Rename-Item -Path $path -NewName $disabledPath
+    Rename-Item -Path $path -NewName $disabledPath -ErrorAction Stop
     return $disabledPath
 }
 

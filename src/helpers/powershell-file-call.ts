@@ -2,6 +2,17 @@ import {exec} from "child_process";
 import * as path from "path";
 import * as _ from "lodash";
 
+const serializeValue = (val: any): any => {
+    if (typeof val === "boolean") {
+        switch (val) {
+            case true: return 1;
+            case false: return 0;
+        }
+    }
+
+    return val ? val.toString() : "";
+};
+
 const serializeArgs = (args: { [arg: string]: any }): string => {
     if (!args || typeof args !== "object") {
         return "";
@@ -11,7 +22,7 @@ const serializeArgs = (args: { [arg: string]: any }): string => {
 
     for (let key in args) {
         paramsWithValues.push(`-${key}`);
-        paramsWithValues.push(args[key]);
+        paramsWithValues.push(serializeValue(args[key]));
     }
 
     return paramsWithValues.join(" ");
@@ -28,7 +39,7 @@ export const powershellFileCall = (fileName: string, args: { [arg: string]: any 
         }
 
         exec(cmd, (err, stdout, stderr) => {
-            if (!err) {
+            if (!stderr) {
                 if (verbose) {
                     console.log(`Powershell call with result:\n${stdout}`);
                 }
