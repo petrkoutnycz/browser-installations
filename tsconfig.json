@@ -9,7 +9,8 @@
         ],
         "types": [
             "node",
-            "lodash"
+            "lodash",
+            "log4js"
         ],
         "rootDir": "./src",
         "outDir": "./dist"
