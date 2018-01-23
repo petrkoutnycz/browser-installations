@@ -1,15 +1,9 @@
-import {DetectorFactory, IBrowserMetadata} from "browser-installations";
+import {detectorFactory, IBrowserMetadata} from "browser-installations";
 
 if (process.env["TRAVIS"]) {
     describe("linux detector > ", () => {
-        let factory: DetectorFactory;
-
-        beforeEach(() => {
-            factory = new DetectorFactory();
-        });
-
         it("chrome", async (done: DoneFn) => {
-            const d = factory.create("chrome");
+            const d = detectorFactory("chrome");
             let result: IBrowserMetadata;
             try {
                 result = await d.detect();
@@ -24,7 +18,7 @@ if (process.env["TRAVIS"]) {
         });
 
         it("firefox", async (done: DoneFn) => {
-            const d = factory.create("firefox");
+            const d = detectorFactory("firefox");
             let result: IBrowserMetadata;
             try {
                 result = await d.detect();

@@ -1,5 +1,6 @@
 import * as mockery from "mockery";
-import {DetectorFactory, LinuxChromeDetector, LinuxFirefoxDetector} from "browser-installations";
+import {detectorFactory, LinuxChromeDetector, LinuxFirefoxDetector} from "browser-installations";
+import {IDetectorFactory} from "browser-installations/dist/api";
 
 describe("detector factory > ", () => {
     let platformValue: NodeJS.Platform;
@@ -8,7 +9,8 @@ describe("detector factory > ", () => {
             return platformValue;
         }
     };
-    let factory: DetectorFactory;
+
+    let factory: IDetectorFactory;
 
     beforeEach(() => {
         mockery.enable({ useCleanCache: true, warnOnUnregistered: false });
@@ -16,8 +18,7 @@ describe("detector factory > ", () => {
         mockery.registerAllowable("browser-installations");
 
         // ctor with mocked 'require("os")'
-        const factoryCtor = require("browser-installations").DetectorFactory;
-        factory = new factoryCtor();
+        factory = require("browser-installations").detectorFactory;
     });
 
     afterEach(() => {
@@ -31,12 +32,12 @@ describe("detector factory > ", () => {
         });
 
         it("works for chrome", () => {
-            const detector = factory.create("chrome");
+            const detector = factory("chrome");
             expect(detector.constructor instanceof LinuxChromeDetector.constructor).toBe(true);
         });
 
         it("works for firefox", () => {
-            const detector = factory.create("firefox");
+            const detector = factory("firefox");
             expect(detector.constructor instanceof LinuxFirefoxDetector.constructor).toBe(true);
         });
     });
