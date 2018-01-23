@@ -10,7 +10,7 @@ export const bashFileCall = (fileName: string, ...args: string[]): Promise<strin
 
         exec(cmd, (err, stdout, stderr) => {
             if (!stderr) {
-                resolve(stdout);
+                resolve((stdout || "").trim());
             } else {
                 reject(stderr);
             }
