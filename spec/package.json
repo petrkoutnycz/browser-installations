@@ -4,7 +4,7 @@
   "description": "Spec folder for the project",
   "scripts": {
     "assemble": "tsc",
-    "test": "npm run assemble && jasmine JASMINE_CONFIG_PATH=jasmine.json"
+    "test": "npm run assemble && node index.js"
   },
   "author": "Petr Koutny <me@petrkoutny.cz>",
   "license": "MIT",
@@ -12,6 +12,7 @@
     "@types/jasmine": "~2.8.0",
     "browser-installations": "../",
     "jasmine": "~2.8.0",
+    "jasmine-reporters": "~2.3.0",
     "mockery": "~2.1.0"
   },
   "engines": {

@@ -1,14 +1,14 @@
-const pkg = require("browser-installations");
-const api = require("browser-installations/dist/api");
+const path = require("path");
+const Jasmine = require("jasmine");
+const reporters = require("jasmine-reporters");
 
-const factory = new pkg.DetectorFactory();
-const detector = factory.create("chrome");
+const jasmine = new Jasmine();
 
-if (detector) {
-    detector.detect().then(val => {
-        console.log(val);
-    });
-}
+jasmine.addReporter(new reporters.TerminalReporter({
+    verbosity: 3,
+    color: true,
+    showStack: false
+}));
 
-const v = api.Version.parse("1.2.3.4");
-console.log(v);
+jasmine.loadConfigFile(path.join(__dirname, "jasmine.json"));
+jasmine.execute();

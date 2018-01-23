@@ -5,7 +5,8 @@ function test() {
     describe("linux helpers >", () => {
         it("successfully returns echo", async (done: DoneFn) => {
             const helloPath = path.join(__dirname, "../assets/echo-hello.sh");
-            await bashFileCall(helloPath);
+            const result = await bashFileCall(helloPath);
+            expect(result).toBe("Hello World");
             done();
         });
     });
