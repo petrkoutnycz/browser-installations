@@ -1,14 +1,15 @@
 language: node_js
 sudo: required
 node_js:
-  - "lts/*"
+- lts/*
 before_install:
-  - bash ./.travis.before-install.sh
+- bash ./.travis.before-install.sh
 addons:
-  firefox: "57.0.3"
+  firefox: 57.0.3
 deploy:
   provider: npm
-  email: "koutnypetr@seznam.cz"
-  api_key: "78b10403-e5ad-4f2a-ab5a-ee3743f4fc4d"
+  email: koutnypetr@seznam.cz
+  api_key:
+    secure: Sl3d+fpEN398pMHlu0QfaKQukiIUrCR7a0GiaTVCfy+h+ZlV1T3TZBYrHJzz8sAwk9lvBf1VM9215lQg+oph1RCBe4hAO2trVwGTltFCxZfPcZvr9w2yArGRZnymuZL3D5t/KAIiBiKZ0tqvdTTESohOYbXbz+N/hXQbvnoAsA+lGc70Q2vqXhuZem2cx+wxnlJnUB21cYE7OSi2uGrps7dSAA7ALJlBySTzsdVtt//lxHcgHvl3cnGs/qkDK8QzUdY35Zh1iHxo8NFoizTI7GM1T4I1i3SjVYWY1N70n7HH1qP4lSQxCgnNi1yFxooLYjv4jPey0MadpI1EPKR8gqS85yGCWoapnwhP3K6031bWvsIMvF1anu5ehf5ln4RciHMAoT4KIITLQU6dC/7axieoaa0LSvZnq+HWsggQWnfPChjhaf/Neq36vUZrDokYWJNeX6CYul3iQtxjxu+OsPppm1zD5v1Q0Tr22VKzOLs3KJ2WmhcK7OjG1a1rqDE7E1GvSgSjWCxyoUWM9HYfTbruURwWe9uVjg1AnYc/kvmQ7IWKYywv2UbqEvgdqD0gvB2eCg7FQ5AjMEYWBqfqS12mR5mIIvG5153CrY8Pu89J8HFiQS6uD4UOH5W5UFMH/Cb8Z2q22R4cfMcPEX8YAtVnmT1KCDsAc4qfIgjhB1U=
   on:
     branch: master
