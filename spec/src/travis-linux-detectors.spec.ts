@@ -11,9 +11,9 @@ if (process.env["TRAVIS"]) {
                 done.fail(err);
             }
 
-            expect(result.versionObj.major).toBe(63);
+            expect(result.versionObj.major).toBe(64);
             expect(result.versionObj.minor).toBe(0);
-            expect(result.versionObj.patch).toBe(3239);
+            expect(result.versionObj.patch).toBe(3282);
             done();
         });
 
