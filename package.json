@@ -1,7 +1,7 @@
 {
   "name": "browser-installations",
   "version": "1.0.1",
-  "description": "Package for detection versions of installed browsers",
+  "description": "Package for detection versions of installed browsers and their management",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "scripts": {

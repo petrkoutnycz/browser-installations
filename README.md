@@ -1,5 +1,5 @@
 # browser-installations
-node.js library for detection of installed browsers
+node.js library for detection of installed browsers and their management
 
 ## Installations
 It supports detection of following browsers:
